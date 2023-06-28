@@ -1,5 +1,5 @@
 {
-   "version": 1,
-   "name": "german-immigration-digital-assistant",
-   "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+  "version": 2,
+  "name": "german-immigration-digital-assistant",
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
 }
