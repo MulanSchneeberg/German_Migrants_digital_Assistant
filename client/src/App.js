@@ -28,16 +28,19 @@ function App() {
     // fetch response to the api combining the chat log array of messages and seinding it as a message to localhost:3000 as a post
     const messages = chatLogNew.map((message) => message.message).join("\n");
 
-    const response = await fetch("https://express-demo-gamma.vercel.app/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: messages,
-        currentModel,
-      }),
-    });
+    const response = await fetch(
+      "https://german-migrants-chatgpt-y3wx.vercel.app",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: messages,
+          currentModel,
+        }),
+      }
+    );
     const data = await response.json();
     setChatLog([...chatLogNew, { user: "gpt", message: `${data.message}` }]);
     var scrollToTheBottomChatLog =
