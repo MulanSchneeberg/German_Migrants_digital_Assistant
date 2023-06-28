@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require("openai");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const axios = require('axios');
+require("dotenv").config();
 // Express Configuration
 const app = express();
 const port = 3080;
@@ -13,15 +13,14 @@ app.use(require("morgan")("dev"));
 
 // Open AI Configuration
 const configuration = new Configuration({
-  organization: 'org-EBv6mR6wH5zVg5eSWoG3GTKJ',
-  apiKey: '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',
+  organization: process.env.OPENAI_ORG_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
 
-
 app.post("/", async (req, res) => {
-  const  message  = req.body;
+  const message = req.body;
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `${message}`,
@@ -34,8 +33,6 @@ app.post("/", async (req, res) => {
 });
 
 // Get Models Route
-
-
 
 // Start the server
 app.listen(port, () => {
